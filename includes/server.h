@@ -1,12 +1,15 @@
 #ifndef SERVER_H
 # define SERVER_H
 
+# define PORT 7890
+
 # include <stdio.h>
 # include <sys/socket.h>
 # include <stdlib.h>
 # include <netinet/in.h>
 # include <string.h>
 # include <arpa/inet.h>
+# include <unistd.h>
 
 typedef struct  s_env
 {
@@ -43,10 +46,12 @@ void    dump(char *data_buffer, int length)
             while (j <= i)
             {
                 byte = data_buffer[i];
-                if (byte > 31 && byte < 127)
+                /*if (byte > 31 && byte < 127)
                     printf("%c", byte);
                 else
-                    printf(".");
+                    printf(".");*/
+                putchar(byte);
+                j++;
             }
             printf("\n");
         }
