@@ -1,12 +1,12 @@
 NAME = simple_server
 
-SRC = src/server.c
+SRC = src/server.c  src/data.c
 
 FLAGS = gcc -Werror -Wextra -Wall -I includes -o
 
 all: $(NAME)
 
-$(NAME):
+$(NAME): $(SRC)
 	$(FLAGS) $(NAME) $(SRC)
 
 clean:

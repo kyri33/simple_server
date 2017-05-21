@@ -2,6 +2,8 @@
 # define SERVER_H
 
 # define PORT 7890
+# define EOL "\r\n"
+# define EOL_SIZE 2
 
 # include <stdio.h>
 # include <sys/socket.h>
@@ -10,6 +12,7 @@
 # include <string.h>
 # include <arpa/inet.h>
 # include <unistd.h>
+# include <netdb.h>
 
 typedef struct  s_env
 {
@@ -22,7 +25,10 @@ typedef struct  s_env
     int                 yes;
 }               t_env;
 
-void    dump(char *data_buffer, int length)
+int send_string(int sockfd, char *buffer);
+int recv_line(int sockfd, char *buffer);
+
+/*void    dump(char *data_buffer, int length)
 {
     char    byte;
     int     i;
@@ -38,25 +44,24 @@ void    dump(char *data_buffer, int length)
             j = 0;
             while (j < 15 - (i % 16))
             {
-                printf("  ");
+                printf("   ");
                 j++;
             }
             printf("| ");
             j = i - (i % 16);
             while (j <= i)
             {
-                byte = data_buffer[i];
-                /*if (byte > 31 && byte < 127)
+                byte = data_buffer[j];
+                if (byte > 31 && byte < 127)
                     printf("%c", byte);
                 else
-                    printf(".");*/
-                putchar(byte);
+                    printf(".");
                 j++;
             }
             printf("\n");
         }
         i++;
     }
-}
+}*/
 
 #endif
